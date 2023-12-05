@@ -1,0 +1,1 @@
+export const contractEscrowAddress = "0x77d1a6a824a18790677aba75d4d97449c915da3d";
