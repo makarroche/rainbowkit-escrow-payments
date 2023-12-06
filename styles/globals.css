@@ -1,5 +1,6 @@
 html,
 body {
+  background-color:darkslateblue;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -13,4 +14,25 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.fun-footer {
+  background-color: deeppink;
+  position:fixed;
+  bottom:0;
+  width:100%;
+  color:white;
+  font-size: 13px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.container-color {
+  background-color:darkslateblue
+}
+
+.header {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color:darkorchid
 }
