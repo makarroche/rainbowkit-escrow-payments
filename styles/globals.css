@@ -36,3 +36,16 @@ a {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color:darkorchid
 }
+
+.cardImg {
+  padding-left: 0% !important;
+  padding-right: 0% !important;
+}
+
+.choicesButton {
+  width: 10rem !important;
+}
+
+.card-body-ad {
+  border: 1px solid darkslateblue
+}

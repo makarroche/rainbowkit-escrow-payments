@@ -1,8 +1,8 @@
 const Header = () => {
     return (
         <div>
-          <h2 className="header">Play with us and win some tokens</h2>
-          <p className="text-white">The rules are very simple, bla bla bla bla bla bla bla bla you play with us and if you win you get 5 dolphin tokens.</p>
+          <h2 className="header">Welcome to who's that Pokemon?</h2>
+          <p className="text-white">You already know the rules, if you guess the pokemon you get 5 poketokens.</p>
         </div>
     );
 
