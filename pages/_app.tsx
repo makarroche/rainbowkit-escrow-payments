@@ -1,9 +1,13 @@
-import '../styles/globals.css';
-import '@rainbow-me/rainbowkit/styles.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { darkTheme, getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
-import type { AppProps } from 'next/app';
-import { configureChains, createConfig, WagmiConfig } from 'wagmi';
+import "../styles/globals.css";
+import "@rainbow-me/rainbowkit/styles.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import {
+  darkTheme,
+  getDefaultWallets,
+  RainbowKitProvider,
+} from "@rainbow-me/rainbowkit";
+import type { AppProps } from "next/app";
+import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import {
   arbitrum,
   goerli,
@@ -13,8 +17,9 @@ import {
   base,
   zora,
   sepolia,
-} from 'wagmi/chains';
-import { publicProvider } from 'wagmi/providers/public';
+} from "wagmi/chains";
+import { publicProvider } from "wagmi/providers/public";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
@@ -25,14 +30,14 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
     base,
     zora,
     sepolia,
-    ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [goerli] : []),
+    ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true" ? [goerli] : []),
   ],
   [publicProvider()]
 );
 
 const { connectors } = getDefaultWallets({
-  appName: 'RainbowKit App',
-  projectId: '7cf1c342628f036f90cbf10e333ca9f9',
+  appName: "RainbowKit App",
+  projectId: "7cf1c342628f036f90cbf10e333ca9f9",
   chains,
 });
 
@@ -43,13 +48,24 @@ const wagmiConfig = createConfig({
   webSocketPublicClient,
 });
 
+const queryClient = new QueryClient();
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <WagmiConfig config={wagmiConfig}>
-      <RainbowKitProvider chains={chains} theme={darkTheme()}>
-        <Component {...pageProps} />
-      </RainbowKitProvider>
-    </WagmiConfig>
+    <QueryClientProvider client={queryClient}>
+      <WagmiConfig config={wagmiConfig}>
+        <RainbowKitProvider
+          chains={chains}
+          theme={darkTheme({
+            accentColor: "#7b3fe4",
+            accentColorForeground: "white",
+            borderRadius: "medium",
+          })}
+        >
+          <Component {...pageProps} />
+        </RainbowKitProvider>
+      </WagmiConfig>
+    </QueryClientProvider>
   );
 }
 

@@ -8,7 +8,6 @@ import PokemonCard from "../components/PokemonCard";
 import Footer from "../components/Footer";
 
 const Home: NextPage = () => {
-  console.log(contractEscrowAddress);
   return (
     <>
       <Container fluid className="container-color">
