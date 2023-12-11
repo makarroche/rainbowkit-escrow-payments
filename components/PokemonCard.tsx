@@ -5,16 +5,16 @@ import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 
 const PokemonCard = () => {
-  const [choice_names, setChoice_names] = useState(['1','2','3','4']);
+  const [choice_names, setChoice_names] = useState([]);
   const { data: corePokemon, error, isLoading } = useQuery("postsData", getPokemon);
   const [pokemon, setPokemon] = useState();
 
-  const getRandomNumberForId = () => {
-    return Math.floor(Math.random() * (151 - 1 + 1)) + 1;
+  const getRandomNumber = ( min: number, max: number) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   const getPokemonIds = () => {
-    return [...Array(4)].map(getRandomNumberForId);
+    return [...Array(4)].map(() => getRandomNumber(1, 151));
   }
 
   const getPokemonName = (id: number) => {
@@ -26,6 +26,11 @@ const PokemonCard = () => {
     const choice_names = choices_id.map((id: number) => 
       getPokemonName(id))
     setChoice_names(choice_names as []);
+  }
+
+  const getWinnerPokemon = () => {
+    const winner = choice_names[getRandomNumber(0,3)];
+    setPokemon(winner)
   }
 
   useEffect(() => {
