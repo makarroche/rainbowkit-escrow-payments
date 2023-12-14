@@ -3,12 +3,22 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 
 type Choices = {
   names: string[];
+  pokemon: string;
 };
 
-const Choices = ({ names }: Choices) => {
+const Choices = ({ names, pokemon }: Choices) => {
 
   const secondColumnStart = Math.floor(names.length/2);
   const [choice, setChoice] = useState();
+
+  const checkChoice = (name: string) => {
+    if(name === pokemon){
+      //winns
+    }
+    else {
+      //loses
+    }
+  }
 
   return (
     <Container className="mt-5">
@@ -17,7 +27,7 @@ const Choices = ({ names }: Choices) => {
              names.slice(0,secondColumnStart).map((name: string) => {
               return (
                 <Col>
-                  <Button className="choicesButton">{name}</Button>
+                  <Button className="choicesButton" onClick = {()=>checkChoice(name)}>{name}</Button>
                 </Col>
              )})
             }
@@ -27,7 +37,7 @@ const Choices = ({ names }: Choices) => {
              names.slice(secondColumnStart).map((name: string) => {
               return (
                 <Col>
-                  <Button className="choicesButton">{name}</Button>
+                  <Button className="choicesButton" onClick = {()=>checkChoice(name)}>{name}</Button>
                 </Col>
              )})
             }

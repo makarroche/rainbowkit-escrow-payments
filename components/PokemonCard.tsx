@@ -44,7 +44,7 @@ const PokemonCard = () => {
       <Card.Body className="card-body-ad ">
         <Card.Title className="text-center mt-2 mb-4">Who's that Pokemon?</Card.Title>
         <Card.Text>This pokemon loves bla bla bla</Card.Text>
-        <Choices names={choice_names} ></Choices>
+        <Choices names={choice_names} pokemon={pokemon}></Choices>
       </Card.Body>
     </Card>
     </>)
