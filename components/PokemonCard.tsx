@@ -1,13 +1,29 @@
 import { Button, Card } from "react-bootstrap";
 import Choices from "../components/Choices";
-import { getPokemon } from "../api/calls";
+import { getPokemon, getPokemonDetails } from "../api/calls";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 
+type PokemonCard = {
+  name?: string;
+  image?: string;
+}
+
 const PokemonCard = () => {
-  const [choice_names, setChoice_names] = useState([]);
+  const [choiceNames, setChoiceNames] = useState([]);
   const { data: corePokemon, error, isLoading } = useQuery("postsData", getPokemon);
-  const [pokemon, setPokemon] = useState<string>();
+  const [pokemon, setPokemon] = useState<PokemonCard>();
+
+  useEffect(() => {
+    if(corePokemon)
+      getChoicesNames();
+  }, [corePokemon]);
+
+  useEffect(() => {
+    if(choiceNames.length>0)
+      getWinnerPokemon();
+  }, [choiceNames]);
+
 
   const getRandomNumber = ( min: number, max: number) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -23,19 +39,18 @@ const PokemonCard = () => {
 
   const getChoicesNames = () => {
     const choices_id = getPokemonIds();
-    const choice_names = choices_id.map((id: number) => 
-      getPokemonName(id))
-    setChoice_names(choice_names as []);
+    const choice_names = choices_id.map((id: number) =>
+    ({id: id, name: getPokemonName(id)}))
+    setChoiceNames(choice_names as []);
   }
 
-  const getWinnerPokemon = () => {
-    const winner = choice_names[getRandomNumber(0,3)];
-    setPokemon(winner)
+  const getWinnerPokemon = async () => {
+    const randomId = getRandomNumber(0,3);
+    const winner = choiceNames[randomId];
+    const image = await getPokemonDetails(winner.id)
+    setPokemon ({...pokemon, image: image });
+    setPokemon({...pokemon, name: winner.name});
   }
-
-  useEffect(() => {
-    if(corePokemon) getChoicesNames()
-  }, [corePokemon]);
 
   return(
     <>
@@ -44,7 +59,7 @@ const PokemonCard = () => {
       <Card.Body className="card-body-ad ">
         <Card.Title className="text-center mt-2 mb-4">Who's that Pokemon?</Card.Title>
         <Card.Text>This pokemon loves bla bla bla</Card.Text>
-        <Choices names={choice_names} pokemon={pokemon as string}></Choices>
+        <Choices names={choiceNames} pokemon={pokemon as string}></Choices>
       </Card.Body>
     </Card>
     </>)

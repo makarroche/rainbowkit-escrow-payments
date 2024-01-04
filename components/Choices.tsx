@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 
+type name = {
+  id: number
+  name: string 
+}
+
 type Choices = {
-  names: string[];
+  names: [];
   pokemon: string;
 };
 
@@ -24,20 +29,20 @@ const Choices = ({ names, pokemon }: Choices) => {
     <Container className="mt-5">
             <Row className="mt-1 text-center">
             {names &&
-             names.slice(0,secondColumnStart).map((name: string) => {
+             names.slice(0,secondColumnStart).map((item: name) => {
               return (
                 <Col>
-                  <Button className="choicesButton" onClick = {()=>checkChoice(name)}>{name}</Button>
+                  <Button className="choicesButton" onClick = {()=>checkChoice(item.name)}>{item.name}</Button>
                 </Col>
              )})
             }
             </Row>
             <Row className="mt-1 text-center">
             {names &&
-             names.slice(secondColumnStart).map((name: string) => {
+             names.slice(secondColumnStart).map((item: name) => {
               return (
                 <Col>
-                  <Button className="choicesButton" onClick = {()=>checkChoice(name)}>{name}</Button>
+                  <Button className="choicesButton" onClick = {()=>checkChoice(item.name)}>{item.name}</Button>
                 </Col>
              )})
             }
