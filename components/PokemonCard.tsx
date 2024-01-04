@@ -7,7 +7,7 @@ import { useQuery } from "react-query";
 const PokemonCard = () => {
   const [choice_names, setChoice_names] = useState([]);
   const { data: corePokemon, error, isLoading } = useQuery("postsData", getPokemon);
-  const [pokemon, setPokemon] = useState();
+  const [pokemon, setPokemon] = useState<string>();
 
   const getRandomNumber = ( min: number, max: number) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -44,7 +44,7 @@ const PokemonCard = () => {
       <Card.Body className="card-body-ad ">
         <Card.Title className="text-center mt-2 mb-4">Who's that Pokemon?</Card.Title>
         <Card.Text>This pokemon loves bla bla bla</Card.Text>
-        <Choices names={choice_names} pokemon={pokemon}></Choices>
+        <Choices names={choice_names} pokemon={pokemon as string}></Choices>
       </Card.Body>
     </Card>
     </>)
