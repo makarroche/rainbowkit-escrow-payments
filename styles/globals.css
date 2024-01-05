@@ -49,3 +49,23 @@ a {
 .card-body-ad {
   border: 1px solid darkslateblue
 }
+
+#card-container {
+  position: relative;
+}
+
+#pokemon-shadow {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  filter: brightness(0);
+}
+
+
+#pokemon-show {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  filter: brightness(1);
+  transition: filter .5s ease-out;
+}
