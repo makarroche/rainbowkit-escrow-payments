@@ -9,20 +9,15 @@ type name = {
 type Choices = {
   names: [];
   pokemon: string;
+  setChoice: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Choices = ({ names, pokemon }: Choices) => {
+const Choices = ({ names, pokemon, setChoice}: Choices) => {
 
-  const secondColumnStart = Math.floor(names.length/2);
-  const [choice, setChoice] = useState();
+  const secondColumnStart = Math.floor(names?.length/2);
 
   const checkChoice = (name: string) => {
-    if(name === pokemon){
-      //winns
-    }
-    else {
-      //loses
-    }
+      setChoice(name === pokemon ? true : false)
   }
 
   return (
