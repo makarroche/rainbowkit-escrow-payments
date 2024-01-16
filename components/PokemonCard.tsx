@@ -19,11 +19,11 @@ type name = {
 const PokemonCard = () => {
   const contractABI = require("../contract/abi.json");
   const [choiceNames, setChoiceNames] = useState<name[]>();
-  const { data: corePokemon, error, isLoading } = useQuery("postsData", getPokemon);
+  const { data: corePokemon, error} = useQuery("postsData", getPokemon);
   const [pokemon, setPokemon] = useState<PokemonCard>();
   const [choice, setChoice] = useState(false);
 
-  const { data, isError, isSuccess, write } = useContractWrite({
+  const { data, isError, isSuccess, write, isLoading } = useContractWrite({
     address: contractEscrowAddress,
     abi: contractABI,
     functionName: "givePrize",
