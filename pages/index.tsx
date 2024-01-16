@@ -1,7 +1,6 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import type { NextPage } from "next";
 import { useAccount, useContractWrite } from "wagmi";
-import Head from "next/head";
 import { contractEscrowAddress } from "../contract/address";
 import { Col, Container, Row } from "react-bootstrap";
 import Header from "../components/Header";
