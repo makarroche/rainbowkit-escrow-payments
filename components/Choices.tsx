@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 
 type name = {
