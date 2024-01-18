@@ -6,7 +6,6 @@ const Header = () => {
       <h2 className="header"></h2>
       <TypeAnimation
         sequence={[
-          // Same substring at the start will only be typed once, initially
           "Who's that Pokemon?",
           1000,
         ]}
