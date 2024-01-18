@@ -41,7 +41,6 @@ const PokemonCard = () => {
 
   useEffect(() => {
     if(choice) giveTokensToWinner();
-    debugger
   }, [choice]);
 
   const getRandomNumber = ( min: number, max: number) => {
